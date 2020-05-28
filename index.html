@@ -7,6 +7,7 @@
     <title>Beatmaker</title>
   </head>
   <body>
+    <div id="particles-js"></div>
     <div class="sequencer">
       <div class="kick-track">
         <div class="controls">
@@ -37,6 +38,7 @@
           <div class="pad kick-pad b9"></div>
         </div>
       </div>
+
       <div class="snare-track">
         <div class="controls">
           <h1>Snare</h1>
@@ -151,8 +153,9 @@
           <div class="pad clap-pad b9"></div>
         </div>
       </div>
+      <button class="play">Play</button>
     </div>
-    <button class="play">Play</button>
+
     <audio src="kick-sound" src="./allSounds/kick-classic.wav"></audio>
     <audio src="snare-sound" src="./allSounds/snare-brute.wav"></audio>
     <audio src="hat-sound" src="./allSounds/hihat-acoustic02.wav"></audio>
@@ -165,5 +168,11 @@
       crossorigin="anonymous"
     ></script>
     <script src="./app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+      particlesJS.load("particles-js", "particles.json", function () {
+        console.log("Error Chargement");
+      });
+    </script>
   </body>
 </html>
