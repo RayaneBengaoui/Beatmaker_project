@@ -124,11 +124,11 @@ select {
 
 #particles-js {
   position: absolute;
-  width: 100%;
+  width: 80%;
   height: 100%;
   z-index: -1;
   top: 0%;
-  left: 0%;
+  left: 20%;
 }
 
 @keyframes playTrack {
