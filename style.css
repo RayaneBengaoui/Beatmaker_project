@@ -130,3 +130,12 @@ select {
   top: 0%;
   left: 0%;
 }
+
+@keyframes playTrack {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
