@@ -3,6 +3,12 @@ class DrumKit {
     this.pads = document.querySelectorAll(".pad");
     this.playButton = document.querySelector(".play");
 
+    this.currentKick = "./allSounds/kick-classic.wav";
+    this.currentSnare = "./allSounds/snare-brute.wav";
+    this.currentHat = "./allSounds/hihat-acoustic02.wav";
+    this.currentCrash = "./allSounds/crash-808.wav";
+    this.currentClap = "./allSounds/clap-slapper.wav";
+
     this.kickAudio = document.querySelector(".kick-sound");
     this.snareAudio = document.querySelector(".snare-sound");
     this.hatAudio = document.querySelector(".hat-sound");
@@ -18,7 +24,7 @@ class DrumKit {
   }
 
   repeat() {
-    let step = this.index % 10;
+    let step = this.index % 8;
     const activeBars = document.querySelectorAll(`.b${step}`);
 
     //Loop over the pads
