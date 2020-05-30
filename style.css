@@ -71,7 +71,7 @@ svg {
   align-items: center;
   width: 85%;
   justify-content: space-between;
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 
 .hat,
@@ -109,13 +109,26 @@ svg {
 }
 
 .play {
-  padding: 1rem 2rem;
+  padding: 1rem 4rem;
   font-size: 1.5rem;
   background: rgb(88, 88, 88);
   color: white;
   border: none;
   cursor: pointer;
-  margin-top: 3rem;
+  margin-top: 2rem;
+}
+
+.color {
+  padding: 1rem 1rem;
+  font-size: 1.5rem;
+  background: -webkit-linear-gradient(70deg, #fff810 30%, rgba(0, 0, 0, 0) 30%),
+    -webkit-linear-gradient(30deg, #63e89e 60%, #ff7ee3 60%);
+
+  color: black;
+  border: none;
+  cursor: pointer;
+  margin-top: 2rem;
+  margin-left: 3rem;
 }
 
 select {
@@ -135,7 +148,7 @@ select {
 .tempo-slider {
   padding: 0.2rem;
   -webkit-appearance: none;
-  margin: 1rem 0rem;
+
   width: 100%;
   position: relative;
   background-color: rgb(88, 88, 88);
@@ -145,8 +158,18 @@ select {
 
 .tempo p {
   font-size: 1.5rem;
-  margin: 2rem;
+
   text-align: center;
+}
+
+h2 {
+  font-size: 3rem;
+  margin-top: 0rem;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background: cornsilk;
 }
 
 #particles-js {

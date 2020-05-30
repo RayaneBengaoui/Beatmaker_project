@@ -2,6 +2,7 @@ class DrumKit {
   constructor() {
     this.pads = document.querySelectorAll(".pad");
     this.playButton = document.querySelector(".play");
+    this.colorButton = document.querySelector(".color");
 
     this.currentKick = "./allSounds/kick-classic.wav";
     this.currentSnare = "./allSounds/snare-brute.wav";
@@ -25,6 +26,9 @@ class DrumKit {
     this.muteButtons = document.querySelectorAll(".mute");
 
     this.tempoSlider = document.querySelector(".tempo-slider");
+
+    this.colorHead = document.querySelector("h2");
+    this.isRandomColoring = null;
   }
 
   repeat() {
@@ -63,11 +67,14 @@ class DrumKit {
       }
     });
 
+    if (this.colorButton.classList.contains("active")) {
+      this.changeTitleColor();
+    }
+
     this.index++;
   }
 
   start() {
-    console.log(this.index);
     const interval = (60 / this.bpm) * 1000;
 
     if (!this.isPlaying) {
@@ -174,6 +181,60 @@ class DrumKit {
       this.start();
     }
   }
+
+  detectContrast(hexcolor) {
+    // If a leading # is provided, remove it
+    if (hexcolor.slice(0, 1) === "#") {
+      hexcolor = hexcolor.slice(1);
+    }
+
+    // If a three-character hexcode, make six-character
+    if (hexcolor.length === 3) {
+      hexcolor = hexcolor
+        .split("")
+        .map(function (hex) {
+          return hex + hex;
+        })
+        .join("");
+    }
+
+    // Convert to RGB value
+    var r = parseInt(hexcolor.substr(0, 2), 16);
+    var g = parseInt(hexcolor.substr(2, 2), 16);
+    var b = parseInt(hexcolor.substr(4, 2), 16);
+
+    // Get YIQ ratio
+    var yiq = (r * 299 + g * 587 + b * 114) / 1000;
+
+    // Check contrast
+    return yiq >= 128 ? "black" : "white";
+  }
+
+  RGBToHex(rgb) {
+    // Choose correct separator
+    let sep = rgb.indexOf(",") > -1 ? "," : " ";
+    // Turn "rgb(r,g,b)" into [r,g,b]
+    rgb = rgb.substr(4).split(")")[0].split(sep);
+
+    let r = (+rgb[0]).toString(16),
+      g = (+rgb[1]).toString(16),
+      b = (+rgb[2]).toString(16);
+
+    if (r.length == 1) r = "0" + r;
+    if (g.length == 1) g = "0" + g;
+    if (b.length == 1) b = "0" + b;
+
+    return "#" + r + g + b;
+  }
+
+  changeTitleColor() {
+    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    this.colorHead.style.background = "#" + randomColor;
+
+    this.colorHead.style.color = this.detectContrast(
+      this.RGBToHex(this.colorHead.style.background)
+    );
+  }
 }
 
 const drumKit = new DrumKit();
@@ -190,6 +251,10 @@ drumKit.pads.forEach((pad) => {
 drumKit.playButton.addEventListener("click", function () {
   drumKit.updateBtn();
   drumKit.start();
+});
+
+drumKit.colorButton.addEventListener("click", () => {
+  drumKit.colorButton.classList.toggle("active");
 });
 
 drumKit.selects.forEach((select) => {
