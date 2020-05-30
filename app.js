@@ -29,6 +29,8 @@ class DrumKit {
 
     this.colorHead = document.querySelector("h2");
     this.isRandomColoring = null;
+
+    this.volumeSliders = document.querySelectorAll(".volume-slide");
   }
 
   repeat() {
@@ -122,6 +124,21 @@ class DrumKit {
         this.clapAudio.src = selectionValue;
         break;
     }
+  }
+
+  changeVolume(e) {
+    console.log("change volume");
+    var dict = {
+      0: this.kickAudio,
+      1: this.snareAudio,
+      2: this.hatAudio,
+      3: this.crashAudio,
+      4: this.clapAudio,
+    };
+
+    const changeIndex = e.target.getAttribute("data-track");
+
+    dict[changeIndex].volume = e.target.value;
   }
 
   mute(e) {
@@ -275,4 +292,10 @@ drumKit.tempoSlider.addEventListener("input", function (e) {
 
 drumKit.tempoSlider.addEventListener("change", function (e) {
   drumKit.updateTempo();
+});
+
+drumKit.volumeSliders.forEach((slider) => {
+  slider.addEventListener("input", function (e) {
+    drumKit.changeVolume(e);
+  });
 });
